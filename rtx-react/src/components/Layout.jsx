@@ -1,27 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import logo from '../../../assets/logo.png'
 
 export default function Layout({children}){
+  const [mobileOpen, setMobileOpen] = useState(false)
+
+  const closeMenu = () => setMobileOpen(false)
+
   return (
     <div className="min-h-screen">
       <header>
         <div className="wrap">
           <div className="nav">
-            <Link to="/" className="logo">
+            <Link to="/" className="logo" onClick={closeMenu}>
               <img src={logo} alt="Road Truck Express" className="logo-img" />
               <div>Road Truck <span style={{color:'var(--accent-1)'}}>Express</span></div>
             </Link>
 
-            <nav className="nav-links">
-              <NavLink to="/" className={({isActive})=> isActive? 'active':''}>Accueil</NavLink>
-              <NavLink to="/services" className={({isActive})=> isActive? 'active':''}>Services</NavLink>
-              <NavLink to="/flotte" className={({isActive})=> isActive? 'active':''}>Flotte</NavLink>
-              <NavLink to="/a-propos" className={({isActive})=> isActive? 'active':''}>À propos</NavLink>
-              <NavLink to="/contact" className={({isActive})=> 'nav-cta'}>Demander un devis</NavLink>
+            <nav className={`nav-links${mobileOpen ? ' show' : ''}`}>
+              <NavLink to="/" className={({isActive})=> isActive? 'active':''} onClick={closeMenu}>Accueil</NavLink>
+              <NavLink to="/services" className={({isActive})=> isActive? 'active':''} onClick={closeMenu}>Services</NavLink>
+              <NavLink to="/flotte" className={({isActive})=> isActive? 'active':''} onClick={closeMenu}>Flotte</NavLink>
+              <NavLink to="/a-propos" className={({isActive})=> isActive? 'active':''} onClick={closeMenu}>À propos</NavLink>
+              <NavLink to="/contact" className={({isActive})=> 'nav-cta'} onClick={closeMenu}>Demander un devis</NavLink>
             </nav>
 
-            <button className="nav-toggle" aria-label="Menu">
+            <button
+              className="nav-toggle"
+              aria-label="Menu"
+              aria-expanded={mobileOpen}
+              onClick={() => setMobileOpen((open) => !open)}
+            >
               <span />
             </button>
           </div>
