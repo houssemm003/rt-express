@@ -1,17 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../../../assets/css/style.css'
-import heroMp4 from '../../../assets/myvideo.mp4'
-import heroPoster from '../../../assets/logo.png'
 
 export default function Home(){
   return (
     <div>
 
       <section className="hero">
-        <video className="hero-video" autoPlay muted loop playsInline poster={heroPoster}>
-          <source src={heroMp4} type="video/mp4" />
-        </video>
+        <div className="hero-visual" aria-hidden="true">
+          <div className="visual-orb orb-one" />
+          <div className="visual-orb orb-two" />
+          <div className="visual-grid" />
+        </div>
         <svg className="route-line" viewBox="0 0 1120 480" preserveAspectRatio="none" style={{position:'absolute', inset:0, zIndex:1, opacity:0.5}}>
           <path d="M -50 420 C 200 420, 260 200, 500 200 S 800 60, 1180 60" stroke="#F0A202" strokeWidth="2" strokeDasharray="14 12" fill="none" opacity="0.55"/>
           <path d="M -50 420 C 200 420, 260 200, 500 200 S 800 60, 1180 60" stroke="#ECE9E2" strokeWidth="1" fill="none" opacity="0.12"/>
